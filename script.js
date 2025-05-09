@@ -1,7 +1,7 @@
 import { createClient } from 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js/+esm'
 
 const supabaseUrl = 'https://gwgnshqsnobomnxaanmu.supabase.co'
-const supabaseKey = 'ISI_PUBLIC_ANON_KEY_KAMU_DI_SINI'
+const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imd3Z25zaHFzbm9ib21ueGFhbm11Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDY3NTI2ODAsImV4cCI6MjA2MjMyODY4MH0.Ykn72UeowT1yImXM8GjbzSIbczWJf1PB1db16fWmWOQ'
 const supabase = createClient(supabaseUrl, supabaseKey)
 
 document.addEventListener('DOMContentLoaded', () => {

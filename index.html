@@ -1,75 +1,28 @@
-<head><link rel="stylesheet" href="style.css"></head>
 <!DOCTYPE html>
 <html lang="id">
 <head>
   <meta charset="UTF-8">
-  <title>Pendaftaran Turnamen</title>
-  <style>
-    body { font-family: sans-serif; padding: 2rem; background: #f7f7f7; }
-    form { max-width: 400px; margin: auto; padding: 20px; background: white; border-radius: 8px; }
-    label, input, select { display: block; width: 100%; margin-bottom: 12px; }
-    button { padding: 10px; background: #4CAF50; color: white; border: none; border-radius: 5px; }
-    #result { margin-top: 1rem; color: green; text-align: center; }
-  </style>
+  <title>Formulir Supabase</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-
   <form id="gameForm">
-    <h2>Pendaftaran Season III</h2>
-
+    <h2>Formulir Pendaftaran</h2>
     <label for="game">Pilih Game:</label>
     <select id="game" required>
       <option value="">-- Pilih Game --</option>
       <option value="Mobile Legend">Mobile Legend</option>
       <option value="Stumble">Stumble</option>
     </select>
-
     <label for="nickname">Nickname:</label>
     <input type="text" id="nickname" required />
-
     <label for="phone">No Handphone:</label>
     <input type="tel" id="phone" required />
-
     <label for="date">Tanggal:</label>
     <input type="date" id="date" required />
-
     <button type="submit">Kirim</button>
     <div id="result"></div>
   </form>
-
-  <script type="module">
-    import { createClient } from 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js/+esm'
-
-    const supabaseUrl = 'https://gwgnshqsnobomnxaanmu.supabase.co'
-    const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imd3Z25zaHFzbm9ib21ueGFhbm11Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDY3NTI2ODAsImV4cCI6MjA2MjMyODY4MH0.Ykn72UeowT1yImXM8GjbzSIbczWJf1PB1db16fWmWOQ'
-    const supabase = createClient(supabaseUrl, supabaseKey)
-
-    const form = document.getElementById('gameForm')
-    const result = document.getElementById('result')
-
-    form.addEventListener('submit', async (e) => {
-      e.preventDefault()
-
-      const data = {
-        game: document.getElementById('game').value,
-        nickname: document.getElementById('nickname').value,
-        phone: document.getElementById('phone').value,
-        date: document.getElementById('date').value
-      }
-
-      const { error } = await supabase
-        .from('pendaftaran')
-        .insert([data])
-
-      if (error) {
-        result.innerText = 'Gagal mengirim data: ' + error.message
-        result.style.color = 'red'
-      } else {
-        result.innerText = 'Data berhasil dikirim!'
-        result.style.color = 'green'
-        form.reset()
-      }
-    })
-  </script>
+  <script type="module" src="script.js"></script>
 </body>
 </html>

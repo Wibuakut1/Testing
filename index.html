@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Formulir Supabase</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="form-container">
+    <form id="gameForm" class="form-card">
+      <h2>Daftar Game</h2>
+
+      <label for="game">Pilih Game:</label>
+      <select id="game" name="game" required>
+        <option value="">-- Pilih Game --</option>
+        <option value="Mobile Legend">Mobile Legend</option>
+        <option value="Stumble">Stumble</option>
+      </select>
+
+      <label for="nickname">Nickname:</label>
+      <input type="text" id="nickname" name="nickname" required />
+
+      <label for="phone">No Handphone:</label>
+      <input type="tel" id="phone" name="phone" required pattern="[0-9]{10,13}" />
+
+      <label for="date">Tanggal:</label>
+      <input type="date" id="date" name="date" required />
+
+      <button type="submit">Kirim</button>
+      <div id="result"></div>
+    </form>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

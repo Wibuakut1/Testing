@@ -22,11 +22,9 @@ document.getElementById('gameForm').addEventListener('submit', async function (e
     body: JSON.stringify(data)
   });
 
-  const resultText = document.getElementById('result');
-  if (response.ok) {
-    resultText.innerText = 'Data berhasil dikirim!';
-    document.getElementById('gameForm').reset();
+    if (response.ok) {
+    window.location.href = "sukses.html"; // Redirect ke halaman sukses
   } else {
-    resultText.innerText = 'Gagal mengirim data!';
+    document.getElementById('result').innerText = 'Gagal mengirim data!';
   }
 });

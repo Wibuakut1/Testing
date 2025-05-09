@@ -1,10 +1,10 @@
-import { createClient } from 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js/+esm'
+document.addEventListener('DOMContentLoaded', async () => {
+  const { createClient } = supabase
 
-const supabaseUrl = 'https://gwgnshqsnobomnxaanmu.supabase.co'
-const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imd3Z25zaHFzbm9ib21ueGFhbm11Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDY3NTI2ODAsImV4cCI6MjA2MjMyODY4MH0.Ykn72UeowT1yImXM8GjbzSIbczWJf1PB1db16fWmWOQ'
-const supabase = createClient(supabaseUrl, supabaseKey)
+  const supabaseUrl = 'https://qjtcemqqrdrykuxutuxd.supabase.co'
+  const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InFqdGNlbXFxcmRyeWt1eHV0dXhkIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDY4MDE3NTksImV4cCI6MjA2MjM3Nzc1OX0.1k4vyH-GsvBYvvPARf6f0eKtOj3ZFjmjJIV1GsdorvE'
+  const supabaseClient = createClient(supabaseUrl, supabaseKey)
 
-document.addEventListener('DOMContentLoaded', () => {
   const form = document.getElementById('gameForm')
   const result = document.getElementById('result')
 
@@ -18,7 +18,7 @@ document.addEventListener('DOMContentLoaded', () => {
       date: document.getElementById('date').value
     }
 
-    const { error } = await supabase
+    const { error } = await supabaseClient
       .from('pendaftaran')
       .insert([data])
 
@@ -32,3 +32,4 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   })
 })
+

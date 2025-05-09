@@ -8,8 +8,8 @@ document.getElementById('gameForm').addEventListener('submit', async function (e
     date: document.getElementById('date').value
   };
 
-  const SUPABASE_URL = 'https://YOUR_PROJECT_ID.supabase.co';
-  const API_KEY = 'YOUR_SUPABASE_ANON_KEY';
+  const SUPABASE_URL = 'https://gwgnshqsnobomnxaanmu.supabase.co';
+  const API_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imd3Z25zaHFzbm9ib21ueGFhbm11Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDY3NTI2ODAsImV4cCI6MjA2MjMyODY4MH0.Ykn72UeowT1yImXM8GjbzSIbczWJf1PB1db16fWmWOQ';
 
   const response = await fetch(\`\${SUPABASE_URL}/rest/v1/pendaftaran\`, {
     method: 'POST',

@@ -1,3 +1,14 @@
-"scripts": {
-  "start": "node index.js"
+{
+  "name": "duckrace-bot",
+  "version": "1.0.0",
+  "description": "Discord Duck Race Bot",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "dependencies": {
+    "discord.js": "^14.14.1",
+    "canvas": "^2.11.2",
+    "dotenv": "^16.3.1"
+  }
 }

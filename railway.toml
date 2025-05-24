@@ -1,6 +1,6 @@
 [build]
 nixpacksPlan = {
-  providers = ["nodejs", "apt"],
+  languages = ["node"],
   phases = {
     setup = {
       commands = [

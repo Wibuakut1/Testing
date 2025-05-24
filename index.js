@@ -1,10 +1,14 @@
 const { Client, GatewayIntentBits, SlashCommandBuilder, AttachmentBuilder } = require('discord.js');
 const { createCanvas, loadImage } = require('canvas');
 const { config } = require('dotenv');
-const fs = require('fs');
 config();
 
-const client = new Client({ intents: [GatewayIntentBits.Guilds] });
+const client = new Client({
+  intents: [
+    GatewayIntentBits.Guilds,
+    GatewayIntentBits.GuildMessageReactions, // supaya bisa baca reaction
+  ]
+});
 
 const duckraceCommand = new SlashCommandBuilder()
   .setName('duckrace')
@@ -15,9 +19,13 @@ const duckraceCommand = new SlashCommandBuilder()
       .setRequired(true)
   );
 
+const startDuckRaceCommand = new SlashCommandBuilder()
+  .setName('startduckrace')
+  .setDescription('Mulai duck race dengan peserta yang react');
+
 client.once('ready', async () => {
   console.log(`Bot login sebagai ${client.user.tag}`);
-  await client.application.commands.set([duckraceCommand]);
+  await client.application.commands.set([duckraceCommand, startDuckRaceCommand]);
 });
 
 const canvasWidth = 800;
@@ -87,6 +95,42 @@ client.on('interactionCreate', async interaction => {
     }
 
     await interaction.followUp(`:checkered_flag: Pemenangnya adalah **${winner}**!`);
+  }
+
+  else if (interaction.commandName === 'startduckrace') {
+    const message = await interaction.reply({
+      content: 'React dengan 🦆 untuk ikut balapan! Kamu punya 30 detik.',
+      fetchReply: true,
+    });
+
+    await message.react('🦆');
+
+    const filter = (reaction, user) => reaction.emoji.name === '🦆' && !user.bot;
+    const collector = message.createReactionCollector({ filter, time: 30000 });
+
+    const participants = new Set();
+
+    collector.on('collect', (reaction, user) => {
+      participants.add(user.username);
+    });
+
+    collector.on('end', async () => {
+      if (participants.size < 2) {
+        await interaction.followUp('Peserta kurang dari 2, balapan dibatalkan.');
+        return;
+      }
+      const names = Array.from(participants);
+
+      const { frames, winner } = await simulateDuckRace(names);
+
+      for (const frame of frames) {
+        const attachment = new AttachmentBuilder(frame, { name: 'duckrace.png' });
+        await interaction.followUp({ files: [attachment] });
+        await new Promise(r => setTimeout(r, 1000));
+      }
+
+      await interaction.followUp(`:checkered_flag: Pemenangnya adalah **${winner}**!`);
+    });
   }
 });
 
